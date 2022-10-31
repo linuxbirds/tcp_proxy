@@ -16,8 +16,8 @@ var blue = color.New(color.FgBlue).SprintFunc()
 func main() {
 
 	// Parse the starting parameters
-	fromAddress := flag.String("from_addr", "127.0.0.1:8888", blue("From which address to proxied"))
-	toAddress := flag.String("to_addr", "127.0.0.1:8080", blue("To which address to proxied"))
+	fromAddress := flag.String("from", "127.0.0.1:8888", blue("From which address to proxied"))
+	toAddress := flag.String("to", "127.0.0.1:8080", blue("To which address to proxied"))
 
 	flag.Parse()
 
