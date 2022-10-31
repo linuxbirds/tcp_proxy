@@ -5,9 +5,9 @@
 ```shell
 shell$ tcp_proxy.exe -h
 Usage of tcp_proxy.exe:
-  -from_addr string
+  -from string
         From which address to proxied (default "127.0.0.1:8888")
-  -to_addr string
+  -to string
         To which address to proxied (default "127.0.0.1:8080")
 
 ```
