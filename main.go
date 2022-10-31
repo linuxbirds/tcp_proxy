@@ -43,8 +43,34 @@ func main() {
 			continue
 		}
 
-		go io.Copy(fromConn, toConn)
-		go io.Copy(toConn, fromConn)
+		go func() {
+			_, err := io.Copy(fromConn, toConn)
+			if err != nil {
+				fmt.Println("from -> to failure:", err)
+				err := fromConn.Close()
+				if err != nil {
+					fmt.Println("", err)
+				}
+				err = toConn.Close()
+				if err != nil {
+					fmt.Println("", err)
+				}
+			}
+		}()
+		go func() {
+			_, err := io.Copy(toConn, fromConn)
+			if err != nil {
+				fmt.Println("to -> from failure:", err)
+				err := toConn.Close()
+				if err != nil {
+					fmt.Println("", err)
+				}
+				err = fromConn.Close()
+				if err != nil {
+					fmt.Println("", err)
+				}
+			}
+		}()
 
 	}
 
